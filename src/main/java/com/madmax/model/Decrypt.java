@@ -15,12 +15,14 @@ public class Decrypt {
 
         int keyIndex = 0;
 
-        for (char letter : data.toCharArray()) {
-            int binaryLetter = letter;
-            int binaryKeyLetter = key.charAt(keyIndex);
+        for (int i = 0; i < data.length(); i++) {
+            char binaryLetter = data.charAt(i);
+            char binaryKeyLetter = key.charAt(keyIndex);
+            builder.append((char) (binaryLetter ^ binaryKeyLetter));
 
-            int a = binaryLetter ^ binaryKeyLetter;
-            System.out.println((char) a);
+            keyIndex++;
+
+            if (keyIndex == key.length()) keyIndex = 0;
         }
 
         return builder.toString();
