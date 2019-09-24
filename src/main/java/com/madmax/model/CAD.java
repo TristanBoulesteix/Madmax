@@ -3,7 +3,7 @@ import java.sql.*;
 
 public class CAD {
 
-        public static void CAD() {
+        public void connect() {
             try{
                 Class.forName("com.mysql.jdbc.Driver");
                 Connection con=DriverManager.getConnection(
@@ -14,7 +14,7 @@ public class CAD {
                 while(rs.next())
                     System.out.println(rs.getInt(1)+"  "+rs.getString(2));
                 con.close();
-            }catch(Exception e){ System.out.println(e);}
+            }catch(Exception e){ System.out.println("ERROR"+ e);}
         }
 
 /* http://localhost/phpmyadmin/db_structure.php?server=1&db=madmax
