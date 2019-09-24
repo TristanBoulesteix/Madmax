@@ -106,20 +106,22 @@ public class AuthFrame extends JFrame {
         }
 
         @Override
-        public void keyTyped(KeyEvent e) { }
+        public void keyTyped(KeyEvent e) {
+        }
 
         @Override
         public void keyPressed(KeyEvent e) {
             if (e.getKeyCode() == KeyEvent.VK_ENTER) {
                 if (component.equals("login")) {
                     passField.requestFocus();
-                } else if(component.equals("pass")) {
+                } else if (component.equals("pass")) {
                     updateAllObservers();
                 }
             }
         }
 
         @Override
-        public void keyReleased(KeyEvent e) { }
+        public void keyReleased(KeyEvent e) {
+        }
     }
 }
