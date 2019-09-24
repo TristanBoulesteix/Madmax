@@ -1,23 +1,26 @@
 package com.madmax.view.auth;
 
+import com.madmax.controller.utils.Observer;
 import com.madmax.view.auth.components.JPasswordFieldWithPlaceHolder;
 import com.madmax.view.auth.components.JTextFieldWithPlaceholder;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class AuthFrame extends JFrame {
     private static final Dimension FIELD_DIMENSIONS = new Dimension(200, 25);
     private static final Dimension BUTTON_DIMENSIONS = new Dimension(100, 25);
 
-    private static AuthFrame INSTANCE = new AuthFrame();
+    private List<Observer> observers = new ArrayList<>();
 
-    public static AuthFrame getInstance(){
-        return INSTANCE;
+    public void addObserver(Observer observer) {
+        this.observers.add(observer);
     }
 
-    private AuthFrame(){
-        this.setSize(500,375);
+    public AuthFrame() {
+        this.setSize(500, 375);
         this.setUndecorated(false);
         this.setTitle("LOGIN");
         this.setResizable(false);
@@ -71,10 +74,21 @@ public class AuthFrame extends JFrame {
         // Validation button
         JButton logInButton = new JButton("Connexion");
         logInButton.setPreferredSize(new Dimension(BUTTON_DIMENSIONS));
+        logInButton.addActionListener(e -> {
+            updateAllObservers(loginField.getText(), new String(passField.getPassword()));
+        });
         GridBagConstraints cLogInButton = new GridBagConstraints();
         cLogInButton.gridx = 0;
         cLogInButton.gridy = 3;
         cLogInButton.insets = new Insets(10, 20, 20, 20);
         loginPanel.add(logInButton, cLogInButton);
+    }
+
+    private void updateAllObservers(String login, String password) {
+        for (Observer observer : observers) {
+            observer.update(new String[]{login, password});
+        }
+
+        this.dispose();
     }
 }

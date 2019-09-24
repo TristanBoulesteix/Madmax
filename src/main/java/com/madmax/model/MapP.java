@@ -1,8 +1,13 @@
 package com.madmax.model;
 
-import java.sql.ResultSet;
-
 public class MapP {
+    private static final MapP INSTANCE = new MapP();
+
+    public static MapP getInstance() {
+        return INSTANCE;
+    }
+
+    private MapP() { }
 
     public String selectIDbyLoginPassword(String login, String password){
 

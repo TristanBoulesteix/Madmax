@@ -1,5 +1,6 @@
 package com.madmax;
-import com.madmax.view.auth.AuthFrame;
+
+import com.madmax.controller.Wkf_cpte;
 
 import javax.swing.*;
 
@@ -12,6 +13,6 @@ public class Main {
             e.printStackTrace();
         }
 
-        AuthFrame.getInstance().setVisible(true);
+        Wkf_cpte.getInstance().showLoginFrame();
     }
 }
