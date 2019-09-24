@@ -1,0 +1,26 @@
+Dictionnaire de données 
+
+Nom : ID
+Code : ID
+Type : AUTO_INCREMENT
+Taille : ,
+Commentaire : 
+
+Nom : Login
+Code : LOGIN
+Type : VARCHAR
+Taille : 50,
+Commentaire : 
+
+Nom : Password
+Code : PASSWORD
+Type : VARCHAR
+Taille : 5,
+Commentaire : 
+
+Nom : Mot
+Code : MOT
+Type : VARCHAR
+Taille : 50,
+Commentaire : 
+
