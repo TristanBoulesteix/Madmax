@@ -2,16 +2,13 @@ package com.madmax.view;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 
-public class AuthFrame extends JFrame implements KeyListener {
-    private static AuthFrame instance;
+public class AuthFrame extends JFrame {
+    private static AuthFrame instance = new AuthFrame();
 
-    private AuthPanel panel;
-    private JPasswordField pass;
-    private JTextField id;
-    private JButton login;
+    public static AuthFrame getInstance(){
+        return instance;
+    }
 
 
     private AuthFrame(){
@@ -19,88 +16,33 @@ public class AuthFrame extends JFrame implements KeyListener {
         this.setUndecorated(false);
         this.setTitle("LOGIN");
         this.setResizable(false);
-        addKeyListener(this);
-        this.panel = new AuthPanel();
-        this.panel.setLayout(new FlowLayout());
-        this.login = new JButton("Begin Hack");
-        this.id = new JTextField();
-        this.pass = new JPasswordField();
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setLayout(new GridBagLayout());
 
-        panel.add(login);
-
-        panel.add(pass);
-
-        panel.add(id);
-
-        this.add(panel);
-
-        this.setVisible(true);
+        this.initComponents();
     }
 
-    public static AuthFrame getInstance(){
+    private void initComponents() {
+        JPanel loginPanel = new JPanel();
+        loginPanel.setLayout(new GridBagLayout());
+        loginPanel.setBorder(BorderFactory.createLineBorder(Color.black));
+        GridBagConstraints cLoginPanel = new GridBagConstraints();
+        cLoginPanel.insets = new Insets(20, 20, 20, 20);
+        this.add(loginPanel, cLoginPanel);
 
-        if(instance == null)
+        JLabel label = new JLabel("Connexion");
+        GridBagConstraints cLabel = new GridBagConstraints();
+        cLabel.insets = new Insets(20, 50, 0, 50);
+        cLabel.gridx = 0;
+        cLabel.gridy = 0;
+        loginPanel.add(label, cLabel);
 
-        {
-
-            instance = new AuthFrame();
-
-        }
-
-
-        return instance;
-    }
-
-
-
-    public static void setInstance(AuthFrame instance) {
-        AuthFrame.instance = instance;
-    }
-
-    public AuthPanel getPanel() {
-        return panel;
-    }
-
-    public void setPanel(AuthPanel panel) {
-        this.panel = panel;
-    }
-
-    public JPasswordField getPass() {
-        return pass;
-    }
-
-    public void setPass(JPasswordField pass) {
-        this.pass = pass;
-    }
-
-    public JTextField getId() {
-        return id;
-    }
-
-    public void setId(JTextField id) {
-        this.id = id;
-    }
-
-    public JButton getLogin() {
-        return login;
-    }
-
-    public void setLogin(JButton login) {
-        this.login = login;
-    }
-
-    public void keyTyped(KeyEvent e) {
-
-    }
-
-    public void keyPressed(KeyEvent e) {
-        if ( e.getKeyCode() == KeyEvent.VK_ESCAPE ) {
-            this.dispose();
-            System.exit(0);
-        }
-    }
-
-    public void keyReleased(KeyEvent e) {
-
+        JTextField loginField = new JTextField();
+        loginField.setPreferredSize(new Dimension(200, 25));
+        GridBagConstraints cLoginFieldn = new GridBagConstraints();
+        cLoginFieldn.gridx = 0;
+        cLoginFieldn.gridy = 1;
+        cLoginFieldn.insets = new Insets(10, 20, 20, 20);
+        loginPanel.add(loginField, cLoginFieldn);
     }
 }
