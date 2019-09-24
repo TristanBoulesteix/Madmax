@@ -9,7 +9,7 @@ CREATE DATABASE madmax;
 #------------------------------------------------------------
 SELECT madmax,
 CREATE TABLE Utilistateur(
-        ID       Int  Auto_increment  NOT NULL ,
+        ID       Int  PRIMARY KEY  NOT NULL AUTO_INCREMENT,
         Login    Varchar (50) NOT NULL ,
         Password Varchar (5) NOT NULL
 )ENGINE=InnoDB;
@@ -17,9 +17,9 @@ CREATE TABLE Utilistateur(
 # Table: Dictionnaire
 #------------------------------------------------------------
 CREATE TABLE Dictionnaire(
-        ID  Int  Auto_increment  NOT NULL ,
+        ID  Int  PRIMARY KEY  NOT NULL AUTO_INCREMENT,
         Mot Varchar (50) NOT NULL
 )ENGINE=InnoDB;
 
-INSERT INTO Utilistateur(Login, Password) VALUES ("root", "Hello", "Admin", "Admin");
+INSERT INTO Utilistateur(Login, Password) VALUES ("root", "Hello"),("Admin", "Admin");
 
