@@ -1,4 +1,5 @@
 package com.madmax;
+import com.madmax.model.CAD;
 
 import com.madmax.view.auth.AuthFrame;
 
