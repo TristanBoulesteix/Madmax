@@ -7,6 +7,8 @@ import com.madmax.view.auth.AuthFrame;
 public class Wkf_cpte implements Observer {
     private static final Wkf_cpte INSTANCE = new Wkf_cpte();
 
+    private String userId = "";
+
     public static Wkf_cpte getInstance() {
         return INSTANCE;
     }
@@ -20,10 +22,14 @@ public class Wkf_cpte implements Observer {
     private Wkf_cpte() {}
 
     private boolean pcs_authentifier(String login, String password) {
-        String test = MapP.getInstance().selectIDbyLoginPassword(login, password);
-        System.out.println(test);
+        String result = MapP.getInstance().selectIDbyLoginPassword(login, password);
 
-        System.out.println(login + " " + password);
+        if(result == null) {
+            return false;
+        } else {
+            this.userId = result;
+        }
+
         return true;
     }
 
@@ -34,5 +40,9 @@ public class Wkf_cpte implements Observer {
         if (!pcs_authentifier(parameters[0], parameters[1])) {
             showLoginFrame();
         }
+    }
+
+    public String getUserId() {
+        return userId;
     }
 }
