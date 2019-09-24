@@ -19,4 +19,8 @@ public class Wkf_decrypt {
         Files.getInstance().setData(destination_path, data);
         return true;
     }
+
+    private String generateKey() {
+        return null;
+    }
 }
