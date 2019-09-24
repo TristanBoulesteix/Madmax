@@ -6,7 +6,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 public class FileManageFrame extends JFrame implements KeyListener {
-    private static DecryptFrame instance;
+    private static FileManageFrame instance;
 
     private FileManagePanel panel;
     private JTextField message;
