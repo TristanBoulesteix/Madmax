@@ -5,9 +5,9 @@ public class CAD {
 
         public void connect() {
             try{
-                Class.forName("com.mysql.jdbc.Driver");
+
                 Connection con=DriverManager.getConnection(
-                        "jdbc:mysql://localhost/phpmyadmin/db_structure.php?server=1&db=madmax","root","");
+                        "jdbc:mysql://localhost/madmax?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC","root","");
 
                 Statement stmt=con.createStatement();
                 ResultSet rs=stmt.executeQuery("select * from utilisateur");

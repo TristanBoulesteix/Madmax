@@ -8,7 +8,7 @@ CREATE DATABASE madmax;
 # Table: Utilistateur
 #------------------------------------------------------------
 SELECT madmax,
-CREATE TABLE Utilistateur(
+CREATE TABLE Utilisateur(
         ID       Int  PRIMARY KEY  NOT NULL AUTO_INCREMENT,
         Login    Varchar (50) NOT NULL ,
         Password Varchar (5) NOT NULL
