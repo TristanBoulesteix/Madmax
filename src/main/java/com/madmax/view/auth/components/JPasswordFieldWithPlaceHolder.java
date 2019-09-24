@@ -18,7 +18,7 @@ public class JPasswordFieldWithPlaceHolder extends JPasswordField implements Doc
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
 
-        if (getText().isEmpty() && FocusManager.getCurrentKeyboardFocusManager().getFocusOwner() != this ) {
+        if (getPassword().length == 0 && FocusManager.getCurrentKeyboardFocusManager().getFocusOwner() != this ) {
             Graphics2D g2 = (Graphics2D) g.create();
             g2.setBackground(Color.GRAY);
             g2.setFont(getFont().deriveFont(Font.ITALIC));
