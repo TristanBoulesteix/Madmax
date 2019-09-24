@@ -45,9 +45,4 @@ public class AuthFrame extends JFrame {
         cLoginFieldn.insets = new Insets(10, 20, 20, 20);
         loginPanel.add(loginField, cLoginFieldn);
     }
-
-    public void paintComponent(Graphics g) {
-        super.paint(g);
-
-    }
 }
