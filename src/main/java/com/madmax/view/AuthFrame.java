@@ -21,18 +21,22 @@ public class AuthFrame extends JFrame implements KeyListener {
         this.setResizable(false);
         addKeyListener(this);
         this.panel = new AuthPanel();
-        this.panel.setLayout(new FlowLayout());
+        this.setLayout();
         this.login = new JButton("Begin Hack");
         this.id = new JTextField();
         this.pass = new JPasswordField();
 
         panel.add(login);
+        login.setLocation(50,50);
 
         panel.add(pass);
+        pass.setSize(50,150);
 
         panel.add(id);
+        id.setSize(50,150);
 
         this.add(panel);
+        this.repaint();
 
         this.setVisible(true);
     }
@@ -101,6 +105,11 @@ public class AuthFrame extends JFrame implements KeyListener {
     }
 
     public void keyReleased(KeyEvent e) {
+
+    }
+
+    public void paintComponent(Graphics g) {
+        super.paint(g);
 
     }
 }
