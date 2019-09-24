@@ -23,3 +23,5 @@ CREATE TABLE Dictionnaire(
 
 INSERT INTO Utilistateur(Login, Password) VALUES ("root", "Hello"),("Admin", "Admin");
 
+INSERT INTO Dictionnaire(Mot) VALUES ("trucc"),("Hello"),("password"),("patate");
+
