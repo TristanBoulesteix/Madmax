@@ -2,10 +2,8 @@ package com.madmax.view.file;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 
-public class FileManagerFrame extends JFrame implements KeyListener {
+public class FileManagerFrame extends JFrame {
     private static final Dimension BUTTON_DIMENSIONS = new Dimension(300, 25);
     private static final String SELECT_BUTTON_LABEL = "Sélectionnez un fichier crypté";
     private static final String SAVE_BUTTON_LABEL = "Enregistrer sous...";
@@ -103,20 +101,5 @@ public class FileManagerFrame extends JFrame implements KeyListener {
         } else {
             this.validate.setEnabled(false);
         }
-    }
-
-    @Override
-    public void keyTyped(KeyEvent e) {
-
-    }
-
-    @Override
-    public void keyPressed(KeyEvent e) {
-
-    }
-
-    @Override
-    public void keyReleased(KeyEvent e) {
-
     }
 }
