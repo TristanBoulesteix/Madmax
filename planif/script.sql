@@ -21,7 +21,7 @@ CREATE TABLE Dictionnaire(
         Mot Varchar (50) NOT NULL
 )ENGINE=InnoDB;
 
-INSERT INTO Utilistateur(Login, Password) VALUES ("root", "Hello"),("Admin", "Admin");
+INSERT INTO Utilisateur(Login, Password) VALUES ("root", "Hello"),("Admin", "Admin");
 
 INSERT INTO Dictionnaire(Mot) VALUES ("trucc"),("Hello"),("password"),("patate");
 
