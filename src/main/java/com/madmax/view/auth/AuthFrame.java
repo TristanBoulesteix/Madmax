@@ -1,23 +1,30 @@
 package com.madmax.view.auth;
 
+import com.madmax.controller.utils.Observer;
 import com.madmax.view.auth.components.JPasswordFieldWithPlaceHolder;
 import com.madmax.view.auth.components.JTextFieldWithPlaceholder;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.util.ArrayList;
+import java.util.List;
 
 public class AuthFrame extends JFrame {
     private static final Dimension FIELD_DIMENSIONS = new Dimension(200, 25);
     private static final Dimension BUTTON_DIMENSIONS = new Dimension(100, 25);
 
-    private static AuthFrame INSTANCE = new AuthFrame();
+    private List<Observer> observers = new ArrayList<>();
+    private JTextFieldWithPlaceholder loginField;
+    private JPasswordFieldWithPlaceHolder passField;
 
-    public static AuthFrame getInstance(){
-        return INSTANCE;
+    public void addObserver(Observer observer) {
+        this.observers.add(observer);
     }
 
-    private AuthFrame(){
-        this.setSize(500,375);
+    public AuthFrame() {
+        this.setSize(500, 375);
         this.setUndecorated(false);
         this.setTitle("LOGIN");
         this.setResizable(false);
@@ -49,7 +56,8 @@ public class AuthFrame extends JFrame {
         loginPanel.add(label, cLabel);
 
         // Login field
-        JTextFieldWithPlaceholder loginField = new JTextFieldWithPlaceholder();
+        loginField = new JTextFieldWithPlaceholder();
+        loginField.addKeyListener(new ValidateForm("login"));
         loginField.setPreferredSize(FIELD_DIMENSIONS);
         loginField.setPlaceHolder("Login");
         GridBagConstraints cLoginFieldn = new GridBagConstraints();
@@ -59,7 +67,8 @@ public class AuthFrame extends JFrame {
         loginPanel.add(loginField, cLoginFieldn);
 
         // Password field
-        JPasswordFieldWithPlaceHolder passField = new JPasswordFieldWithPlaceHolder();
+        passField = new JPasswordFieldWithPlaceHolder();
+        passField.addKeyListener(new ValidateForm("pass"));
         passField.setPreferredSize(FIELD_DIMENSIONS);
         passField.setPlaceHolder("Password");
         GridBagConstraints cPassField = new GridBagConstraints();
@@ -71,10 +80,48 @@ public class AuthFrame extends JFrame {
         // Validation button
         JButton logInButton = new JButton("Connexion");
         logInButton.setPreferredSize(new Dimension(BUTTON_DIMENSIONS));
+        logInButton.addActionListener(e -> {
+            updateAllObservers();
+        });
         GridBagConstraints cLogInButton = new GridBagConstraints();
         cLogInButton.gridx = 0;
         cLogInButton.gridy = 3;
         cLogInButton.insets = new Insets(10, 20, 20, 20);
         loginPanel.add(logInButton, cLogInButton);
+    }
+
+    private void updateAllObservers() {
+        for (Observer observer : observers) {
+            observer.update(new String[]{loginField.getText(), new String(passField.getPassword())});
+        }
+
+        this.dispose();
+    }
+
+    private class ValidateForm implements KeyListener {
+        private String component;
+
+        ValidateForm(String component) {
+            this.component = component;
+        }
+
+        @Override
+        public void keyTyped(KeyEvent e) {
+        }
+
+        @Override
+        public void keyPressed(KeyEvent e) {
+            if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                if (component.equals("login")) {
+                    passField.requestFocus();
+                } else if (component.equals("pass")) {
+                    updateAllObservers();
+                }
+            }
+        }
+
+        @Override
+        public void keyReleased(KeyEvent e) {
+        }
     }
 }

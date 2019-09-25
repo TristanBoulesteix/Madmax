@@ -6,13 +6,11 @@ import com.madmax.model.Files;
 
 public class Wkf_decrypt {
 
-
     private String lastTestKey;
     private int nbTested;
     private int nextIndex;
     private String hint = "awqp";
     public static String placeHolder = "boNjouR, le java est un langage de programmation interessant";
-
     private final static Wkf_decrypt INSTANCE = new Wkf_decrypt();
 
     public static Wkf_decrypt getInstance() {
@@ -29,6 +27,7 @@ public class Wkf_decrypt {
         Files.getInstance().setData(destination_path, data);
         return true;
     }
+
 
     public String generateKeyFromLastAttempt() { // 97 to 122
         int length = lastTestKey.length();
@@ -77,5 +76,5 @@ public class Wkf_decrypt {
         String[] words = clean.split(" ",5);
         return words;
     }
-
+  
 }
