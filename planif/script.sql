@@ -41,17 +41,17 @@ CREATE DATABASE IF NOT EXISTS madmax CHARACTER SET UTF8 collate utf8_bin;
 
 DROP TABLE IF EXISTS madmax.`utilisateur`;
 CREATE TABLE IF NOT EXISTS madmax.`utilisateur` (
-  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `ID_utilisateur` int(11) NOT NULL AUTO_INCREMENT,
   `Login` varchar(50) NOT NULL,
   `Password` varchar(5) NOT NULL,
-  PRIMARY KEY (`ID`)
+  PRIMARY KEY (`ID_utilisateur`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `utilisateur`
 --
 
-INSERT INTO madmax.`utilisateur` (`ID`, `Login`, `Password`) VALUES
+INSERT INTO madmax.`utilisateur` (`ID_utilisateur`, `Login`, `Password`) VALUES
 (1, 'root', 'Hello'),
 (2, 'Admin', 'Admin');
 COMMIT;
@@ -65,14 +65,16 @@ COMMIT;
 
 DROP TABLE IF EXISTS madmax.`dictionnaire`;
 CREATE TABLE IF NOT EXISTS madmax.`dictionnaire` (
-  `COL 1` varchar(26) DEFAULT NULL
+  `ID_dictionnaire` int(20) NOT NULL AUTO_INCREMENT,
+  `Mot` varchar(26) DEFAULT NULL,
+   PRIMARY KEY (`ID_dictionnaire`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `dictionnaire`
 --
 
-INSERT INTO madmax.`dictionnaire` (`COL 1`) VALUES
+INSERT INTO madmax.`dictionnaire` (`Mot`) VALUES
 (''),
 ('aa'),
 ('aabam'),
@@ -3749,7 +3751,7 @@ INSERT INTO madmax.`dictionnaire` (`COL 1`) VALUES
 ('antigravitation'),
 ('antigravitationnel');
 
-INSERT INTO madmax.`dictionnaire` (`COL 1`) VALUES
+INSERT INTO madmax.`dictionnaire` (`mot`) VALUES
 ('antigrisouteux'),
 ('antihalo'),
 ('antihausse'),
@@ -7446,7 +7448,7 @@ INSERT INTO madmax.`dictionnaire` (`COL 1`) VALUES
 ('baryon'),
 ('baryonique'),
 ('barysilite');
-INSERT INTO `dictionnaire` (`COL 1`) VALUES
+INSERT INTO madmax.`dictionnaire` (`mot`) VALUES
 ('barytage'),
 ('baryte'),
 ('baryter'),
@@ -11401,7 +11403,7 @@ INSERT INTO `dictionnaire` (`COL 1`) VALUES
 ('calcitonine'),
 ('calcium'),
 ('calciurie');
-INSERT INTO `dictionnaire` (`COL 1`) VALUES
+INSERT INTO madmax.`dictionnaire` (`Mot`) VALUES
 ('calciurique'),
 ('calcoalcalin'),
 ('calcosodique'),
@@ -15112,7 +15114,7 @@ INSERT INTO `dictionnaire` (`COL 1`) VALUES
 ('circonvallation'),
 ('circonvenir'),
 ('circonvoisin');
-INSERT INTO `dictionnaire` (`COL 1`) VALUES
+INSERT INTO madmax.`dictionnaire` (`Mot`) VALUES
 ('circonvoisiner'),
 ('circonvolutif'),
 ('circonvolution'),
@@ -18761,7 +18763,7 @@ INSERT INTO `dictionnaire` (`COL 1`) VALUES
 ('crespeler'),
 ('cresserine'),
 ('cressiculteur');
-INSERT INTO `dictionnaire` (`COL 1`) VALUES
+INSERT INTO madmax.`dictionnaire` (`Mot`) VALUES
 ('cressiculture'),
 ('cresson'),
 ('cressonnette'),
@@ -22520,7 +22522,7 @@ INSERT INTO `dictionnaire` (`COL 1`) VALUES
 ('duvet'),
 ('duveter'),
 ('duveteux');
-INSERT INTO `dictionnaire` (`COL 1`) VALUES
+INSERT INTO madmax.`dictionnaire` (`Mot`) VALUES
 ('duvetine'),
 ('dux'),
 ('duxelles'),
@@ -26229,7 +26231,7 @@ INSERT INTO `dictionnaire` (`COL 1`) VALUES
 ('ferritine'),
 ('ferritisant'),
 ('ferroalliage');
-INSERT INTO `dictionnaire` (`COL 1`) VALUES
+INSERT INTO madmax.`dictionnaire` (`Mot`) VALUES
 ('ferroaluminium'),
 ('ferrobore'),
 ('ferrocalcite'),
@@ -30202,7 +30204,7 @@ INSERT INTO `dictionnaire` (`COL 1`) VALUES
 ('graffiteur'),
 ('graffiti'),
 ('grafignage');
-INSERT INTO `dictionnaire` (`COL 1`) VALUES
+INSERT INTO madmax.`dictionnaire` (`Mot`) VALUES
 ('grafigner'),
 ('grafigneur'),
 ('graftonite'),
@@ -33881,7 +33883,7 @@ INSERT INTO `dictionnaire` (`COL 1`) VALUES
 ('imperceptiblement'),
 ('imperdable'),
 ('imperfectible');
-INSERT INTO `dictionnaire` (`COL 1`) VALUES
+INSERT INTO madmax.`dictionnaire` (`Mot`) VALUES
 ('imperfectif'),
 ('imperfection'),
 ('imperforation'),
@@ -37568,7 +37570,7 @@ INSERT INTO `dictionnaire` (`COL 1`) VALUES
 ('langbanite'),
 ('langbeinite'),
 ('lange');
-INSERT INTO `dictionnaire` (`COL 1`) VALUES
+INSERT INTO madmax.`dictionnaire` (`Mot`) VALUES
 ('langeadois'),
 ('langeaisien'),
 ('langer'),
@@ -41501,7 +41503,7 @@ INSERT INTO `dictionnaire` (`COL 1`) VALUES
 ('merdaillon'),
 ('merde'),
 ('merder');
-INSERT INTO `dictionnaire` (`COL 1`) VALUES
+INSERT INTO madmax.`dictionnaire` (`Mot`) VALUES
 ('merdeusement'),
 ('merdeux'),
 ('merdier'),
@@ -45197,7 +45199,7 @@ INSERT INTO `dictionnaire` (`COL 1`) VALUES
 ('nomologie'),
 ('nomologique'),
 ('nomophylax');
-INSERT INTO `dictionnaire` (`COL 1`) VALUES
+INSERT INTO madmax.`dictionnaire` (`Mot`) VALUES
 ('non'),
 ('nonagrie'),
 ('nonancourtois'),
@@ -48986,7 +48988,7 @@ INSERT INTO `dictionnaire` (`COL 1`) VALUES
 ('paternel'),
 ('paternellement'),
 ('paternels');
-INSERT INTO `dictionnaire` (`COL 1`) VALUES
+INSERT INTO madmax.`dictionnaire` (`Mot`) VALUES
 ('paternement'),
 ('patersonia'),
 ('patet'),
@@ -52651,7 +52653,7 @@ INSERT INTO `dictionnaire` (`COL 1`) VALUES
 ('posologiste'),
 ('posologue'),
 ('posoqueria');
-INSERT INTO `dictionnaire` (`COL 1`) VALUES
+INSERT INTO madmax.`dictionnaire` (`Mot`) VALUES
 ('pospolite'),
 ('possesseur'),
 ('possessif'),
@@ -56297,7 +56299,7 @@ INSERT INTO `dictionnaire` (`COL 1`) VALUES
 ('recomparer'),
 ('recompartimentage'),
 ('recompartimenter');
-INSERT INTO `dictionnaire` (`COL 1`) VALUES
+INSERT INTO madmax.`dictionnaire` (`Mot`) VALUES
 ('recomparution'),
 ('recompilation'),
 ('recompiler'),
@@ -60106,7 +60108,7 @@ INSERT INTO `dictionnaire` (`COL 1`) VALUES
 ('saprophagie'),
 ('saprophyte'),
 ('saprophytique');
-INSERT INTO `dictionnaire` (`COL 1`) VALUES
+INSERT INTO madmax.`dictionnaire` (`Mot`) VALUES
 ('saprophytisme'),
 ('saproxylique'),
 ('saprozoonose'),
@@ -63921,7 +63923,7 @@ INSERT INTO `dictionnaire` (`COL 1`) VALUES
 ('subdural'),
 ('suber'),
 ('suberaie');
-INSERT INTO `dictionnaire` (`COL 1`) VALUES
+INSERT INTO madmax.`dictionnaire` (`Mot`) VALUES
 ('subfossile'),
 ('subglossite'),
 ('subimago'),
@@ -67687,7 +67689,7 @@ INSERT INTO `dictionnaire` (`COL 1`) VALUES
 ('trabaccolo'),
 ('traban'),
 ('trabe');
-INSERT INTO `dictionnaire` (`COL 1`) VALUES
+INSERT INTO madmax.`dictionnaire` (`Mot`) VALUES
 ('trabea'),
 ('traboule'),
 ('trabouler'),
@@ -71488,7 +71490,7 @@ INSERT INTO `dictionnaire` (`COL 1`) VALUES
 ('voyageur'),
 ('voyagiste'),
 ('voyance');
-INSERT INTO `dictionnaire` (`COL 1`) VALUES
+INSERT INTO madmax.`dictionnaire` (`Mot`) VALUES
 ('voyant'),
 ('voyante'),
 ('voyellation'),
