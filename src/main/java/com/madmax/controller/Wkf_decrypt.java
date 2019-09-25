@@ -5,7 +5,6 @@ import com.madmax.model.Decrypt;
 import com.madmax.model.Files;
 
 public class Wkf_decrypt {
-
     private String lastTestKey;
     private int nbTested;
     private int nextIndex;
