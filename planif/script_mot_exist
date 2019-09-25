@@ -1,3 +1,0 @@
-SELECT count(mot) as existe
-from dictionnaire
-where mot like /*insérez la variable ici*/''

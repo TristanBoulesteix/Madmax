@@ -18,7 +18,7 @@ public class Decrypt {
         for (int i = 0; i < data.length(); i++) {
             char binaryLetter = data.charAt(i);
             char binaryKeyLetter = key.charAt(keyIndex);
-            builder.append((char) (binaryLetter ^ binaryKeyLetter));
+            builder.append((char)(binaryLetter ^ binaryKeyLetter));
 
             keyIndex++;
 
