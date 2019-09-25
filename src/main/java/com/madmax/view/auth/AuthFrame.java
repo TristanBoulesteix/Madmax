@@ -14,6 +14,7 @@ import java.util.List;
 public class AuthFrame extends JFrame {
     private static final Dimension FIELD_DIMENSIONS = new Dimension(200, 25);
     private static final Dimension BUTTON_DIMENSIONS = new Dimension(100, 25);
+    private static final Insets FIELD_INSETS = new Insets(10, 20, 20, 20);
 
     private List<Observer> observers = new ArrayList<>();
     private JTextFieldWithPlaceholder loginField;
@@ -63,7 +64,7 @@ public class AuthFrame extends JFrame {
         GridBagConstraints cLoginFieldn = new GridBagConstraints();
         cLoginFieldn.gridx = 0;
         cLoginFieldn.gridy = 1;
-        cLoginFieldn.insets = new Insets(10, 20, 20, 20);
+        cLoginFieldn.insets = FIELD_INSETS;
         loginPanel.add(loginField, cLoginFieldn);
 
         // Password field
@@ -74,7 +75,7 @@ public class AuthFrame extends JFrame {
         GridBagConstraints cPassField = new GridBagConstraints();
         cPassField.gridx = 0;
         cPassField.gridy = 2;
-        cPassField.insets = new Insets(10, 20, 20, 20);
+        cPassField.insets = FIELD_INSETS;
         loginPanel.add(passField, cPassField);
 
         // Validation button
@@ -86,7 +87,7 @@ public class AuthFrame extends JFrame {
         GridBagConstraints cLogInButton = new GridBagConstraints();
         cLogInButton.gridx = 0;
         cLogInButton.gridy = 3;
-        cLogInButton.insets = new Insets(10, 20, 20, 20);
+        cLogInButton.insets = FIELD_INSETS;
         loginPanel.add(logInButton, cLogInButton);
     }
 
