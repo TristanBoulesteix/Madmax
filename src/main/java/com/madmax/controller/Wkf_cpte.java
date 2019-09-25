@@ -12,6 +12,7 @@ public class Wkf_cpte implements Observer {
     public static Wkf_cpte getInstance() {
         return INSTANCE;
     }
+
     public void showLoginFrame() {
         AuthFrame frame = new AuthFrame();
         frame.addObserver(this);

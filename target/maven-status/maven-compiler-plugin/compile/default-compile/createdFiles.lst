@@ -1,11 +1,13 @@
 com\madmax\view\FileManagePanel.class
 com\madmax\model\CAD.class
+com\madmax\controller\Wkf_decrypt.class
 com\madmax\Main.class
 com\madmax\model\MapP.class
-com\madmax\view\DecryptPanel.class
-com\madmax\view\DecryptFrame.class
+com\madmax\controller\Wkf_cpte.class
+com\madmax\view\auth\AuthFrame$ValidateForm.class
 com\madmax\view\auth\AuthFrame.class
 com\madmax\view\auth\components\JTextFieldWithPlaceholder.class
 com\madmax\view\FileManageFrame.class
 com\madmax\view\auth\components\JPasswordFieldWithPlaceHolder.class
 com\madmax\model\MapDic.class
+com\madmax\controller\utils\Observer.class
