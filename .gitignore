@@ -28,6 +28,8 @@ hs_err_pid*
 .idea/modules.xml
 .idea/workspace.xml
 Madmax.iml
+
+
 *.bak_001d
 *.bak_000f
 *.lck
