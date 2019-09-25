@@ -7,6 +7,15 @@
 -- Version du serveur :  5.7.21
 -- Version de PHP :  5.6.35
 
+#------------------------------------------------------------
+#        Script MySQL.
+#------------------------------------------------------------
+
+#------------------------------------------------------------
+# Database: madmax
+#------------------------------------------------------------
+
+
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
 START TRANSACTION;
@@ -19,17 +28,43 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de données :  `test`
+-- Base de données :  `madmax`
 --
+DROP DATABASE IF EXISTS madmax;
+CREATE DATABASE IF NOT EXISTS madmax CHARACTER SET UTF8 collate utf8_bin;
 
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `utilisateur`
+--
+
+DROP TABLE IF EXISTS madmax.`utilisateur`;
+CREATE TABLE IF NOT EXISTS madmax.`utilisateur` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `Login` varchar(50) NOT NULL,
+  `Password` varchar(5) NOT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+
+--
+-- Déchargement des données de la table `utilisateur`
+--
+
+INSERT INTO madmax.`utilisateur` (`ID`, `Login`, `Password`) VALUES
+(1, 'root', 'Hello'),
+(2, 'Admin', 'Admin');
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+--
 -- Structure de la table `dictionnaire`
 --
 
-DROP TABLE IF EXISTS `dictionnaire`;
-CREATE TABLE IF NOT EXISTS `dictionnaire` (
+DROP TABLE IF EXISTS madmax.`dictionnaire`;
+CREATE TABLE IF NOT EXISTS madmax.`dictionnaire` (
   `COL 1` varchar(26) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
@@ -37,7 +72,7 @@ CREATE TABLE IF NOT EXISTS `dictionnaire` (
 -- Déchargement des données de la table `dictionnaire`
 --
 
-INSERT INTO `dictionnaire` (`COL 1`) VALUES
+INSERT INTO madmax.`dictionnaire` (`COL 1`) VALUES
 (''),
 ('aa'),
 ('aabam'),
@@ -3713,7 +3748,8 @@ INSERT INTO `dictionnaire` (`COL 1`) VALUES
 ('antigraphe'),
 ('antigravitation'),
 ('antigravitationnel');
-INSERT INTO `dictionnaire` (`COL 1`) VALUES
+
+INSERT INTO madmax.`dictionnaire` (`COL 1`) VALUES
 ('antigrisouteux'),
 ('antihalo'),
 ('antihausse'),
@@ -72223,27 +72259,3 @@ INSERT INTO `dictionnaire` (`COL 1`) VALUES
 
 -- --------------------------------------------------------
 
---
--- Structure de la table `user`
---
-
-DROP TABLE IF EXISTS `user`;
-CREATE TABLE IF NOT EXISTS `user` (
-  `ID` int(11) NOT NULL AUTO_INCREMENT,
-  `Login` varchar(50) NOT NULL,
-  `Password` varchar(5) NOT NULL,
-  PRIMARY KEY (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
-
---
--- Déchargement des données de la table `user`
---
-
-INSERT INTO `user` (`ID`, `Login`, `Password`) VALUES
-(1, 'root', 'Hello'),
-(2, 'Admin', 'Admin');
-COMMIT;
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
