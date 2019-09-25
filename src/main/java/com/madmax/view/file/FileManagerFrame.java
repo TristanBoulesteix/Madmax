@@ -1,5 +1,7 @@
 package com.madmax.view.file;
 
+import com.madmax.controller.Wkf_decrypt;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -7,17 +9,12 @@ public class FileManagerFrame extends JFrame {
     private static final Dimension BUTTON_DIMENSIONS = new Dimension(300, 25);
     private static final String SELECT_BUTTON_LABEL = "Sélectionnez un fichier crypté";
     private static final String SAVE_BUTTON_LABEL = "Enregistrer sous...";
-    private static final FileManagerFrame INSTANCE = new FileManagerFrame();
 
     private String encryptedFilePath;
     private String savePath;
     private JButton validate;
 
-    public static FileManagerFrame getINSTANCE() {
-        return INSTANCE;
-    }
-
-    private FileManagerFrame() {
+    public FileManagerFrame() {
         this.setSize(500, 375);
         this.setUndecorated(false);
         this.setTitle("DECRYPT");
@@ -84,7 +81,8 @@ public class FileManagerFrame extends JFrame {
         // Button validate
         this.validate = new JButton("Valider");
         this.validate.addActionListener(e -> {
-
+            if (!Wkf_decrypt.getInstance().pcs_decrypter(this.encryptedFilePath, this.savePath))
+                JOptionPane.showMessageDialog(this, "Une erreur s'est produite !", "Erreur", JOptionPane.ERROR_MESSAGE);
         });
         this.validate.setPreferredSize(BUTTON_DIMENSIONS);
         this.validate.setEnabled(false);
@@ -96,7 +94,7 @@ public class FileManagerFrame extends JFrame {
     }
 
     private void checkValidation() {
-        if(this.encryptedFilePath != null && this.savePath != null) {
+        if (this.encryptedFilePath != null && this.savePath != null) {
             this.validate.setEnabled(true);
         } else {
             this.validate.setEnabled(false);
