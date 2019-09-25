@@ -32,6 +32,8 @@ CREATE TABLE IF NOT EXISTS madmax.Dictionnaire
 )
 ENGINE=InnoDB;
 
+
+
 INSERT INTO madmax.Utilisateur(Login, Password) 
 	VALUES 
 	("root", "Hello"),
