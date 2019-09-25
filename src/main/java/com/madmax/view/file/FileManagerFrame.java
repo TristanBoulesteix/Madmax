@@ -1,5 +1,7 @@
 package com.madmax.view.file;
 
+import com.madmax.controller.Wkf_decrypt;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -7,17 +9,13 @@ public class FileManagerFrame extends JFrame {
     private static final Dimension BUTTON_DIMENSIONS = new Dimension(300, 25);
     private static final String SELECT_BUTTON_LABEL = "Sélectionnez un fichier crypté";
     private static final String SAVE_BUTTON_LABEL = "Enregistrer sous...";
-    private static final FileManagerFrame INSTANCE = new FileManagerFrame();
+    private static final Insets FIELD_INSETS =  new Insets(20, 20, 20, 20);
 
     private String encryptedFilePath;
     private String savePath;
     private JButton validate;
 
-    public static FileManagerFrame getINSTANCE() {
-        return INSTANCE;
-    }
-
-    private FileManagerFrame() {
+    public FileManagerFrame() {
         this.setSize(500, 375);
         this.setUndecorated(false);
         this.setTitle("DECRYPT");
@@ -36,7 +34,7 @@ public class FileManagerFrame extends JFrame {
         filePanel.setLayout(new GridBagLayout());
         filePanel.setBorder(BorderFactory.createLineBorder(Color.black));
         GridBagConstraints cLoginPanel = new GridBagConstraints();
-        cLoginPanel.insets = new Insets(20, 20, 20, 20);
+        cLoginPanel.insets = FIELD_INSETS;
         this.add(filePanel, cLoginPanel);
 
         // Button to select encrypted file
@@ -57,7 +55,7 @@ public class FileManagerFrame extends JFrame {
         GridBagConstraints cSelectFileButton = new GridBagConstraints();
         cSelectFileButton.gridx = 0;
         cSelectFileButton.gridy = 0;
-        cSelectFileButton.insets = new Insets(10, 20, 20, 20);
+        cSelectFileButton.insets = FIELD_INSETS;
         filePanel.add(selectFileButton, cSelectFileButton);
 
         // Button save as
@@ -78,25 +76,26 @@ public class FileManagerFrame extends JFrame {
         GridBagConstraints cSelectSaveAsLocation = new GridBagConstraints();
         cSelectSaveAsLocation.gridx = 0;
         cSelectSaveAsLocation.gridy = 1;
-        cSelectSaveAsLocation.insets = new Insets(10, 20, 20, 20);
+        cSelectSaveAsLocation.insets = FIELD_INSETS;
         filePanel.add(selectSaveAsLocation, cSelectSaveAsLocation);
 
         // Button validate
         this.validate = new JButton("Valider");
         this.validate.addActionListener(e -> {
-
+            if (!Wkf_decrypt.getInstance().pcs_decrypter(this.encryptedFilePath, this.savePath))
+                JOptionPane.showMessageDialog(this, "Une erreur s'est produite !", "Erreur", JOptionPane.ERROR_MESSAGE);
         });
         this.validate.setPreferredSize(BUTTON_DIMENSIONS);
         this.validate.setEnabled(false);
         GridBagConstraints cValidate = new GridBagConstraints();
         cValidate.gridy = 0;
         cValidate.gridy = 2;
-        cValidate.insets = new Insets(10, 20, 20, 20);
+        cValidate.insets = FIELD_INSETS;
         filePanel.add(this.validate, cValidate);
     }
 
     private void checkValidation() {
-        if(this.encryptedFilePath != null && this.savePath != null) {
+        if (this.encryptedFilePath != null && this.savePath != null) {
             this.validate.setEnabled(true);
         } else {
             this.validate.setEnabled(false);

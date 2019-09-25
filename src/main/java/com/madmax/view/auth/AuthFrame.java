@@ -14,6 +14,7 @@ import java.util.List;
 public class AuthFrame extends JFrame {
     private static final Dimension FIELD_DIMENSIONS = new Dimension(200, 25);
     private static final Dimension BUTTON_DIMENSIONS = new Dimension(100, 25);
+    private static final Insets FIELD_INSETS = new Insets(10, 20, 20, 20);
 
     private List<Observer> observers = new ArrayList<>();
     private JTextFieldWithPlaceholder loginField;
@@ -23,7 +24,7 @@ public class AuthFrame extends JFrame {
         this.observers.add(observer);
     }
 
-    public AuthFrame() {
+    public AuthFrame(boolean hasError) {
         this.setSize(500, 375);
         this.setUndecorated(false);
         this.setTitle("LOGIN");
@@ -32,12 +33,12 @@ public class AuthFrame extends JFrame {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setLayout(new GridBagLayout());
 
-        this.initComponents();
+        this.initComponents(hasError);
 
         this.setFocusable(true);
     }
 
-    private void initComponents() {
+    private void initComponents(boolean hasError) {
         // Panel to show the login form
         JPanel loginPanel = new JPanel();
         loginPanel.setFocusable(true);
@@ -63,7 +64,7 @@ public class AuthFrame extends JFrame {
         GridBagConstraints cLoginFieldn = new GridBagConstraints();
         cLoginFieldn.gridx = 0;
         cLoginFieldn.gridy = 1;
-        cLoginFieldn.insets = new Insets(10, 20, 20, 20);
+        cLoginFieldn.insets = FIELD_INSETS;
         loginPanel.add(loginField, cLoginFieldn);
 
         // Password field
@@ -74,8 +75,20 @@ public class AuthFrame extends JFrame {
         GridBagConstraints cPassField = new GridBagConstraints();
         cPassField.gridx = 0;
         cPassField.gridy = 2;
-        cPassField.insets = new Insets(10, 20, 20, 20);
+        cPassField.insets = FIELD_INSETS;
         loginPanel.add(passField, cPassField);
+
+        //Error field
+        if (hasError) {
+            JLabel errorField = new JLabel();
+            errorField.setText("Nom d'utilisateur ou mot de passe invalide");
+            errorField.setForeground(Color.RED);
+            GridBagConstraints cErrorField = new GridBagConstraints();
+            cErrorField.gridx = 0;
+            cErrorField.gridy = 3;
+            cErrorField.insets = FIELD_INSETS;
+            loginPanel.add(errorField, cErrorField);
+        }
 
         // Validation button
         JButton logInButton = new JButton("Connexion");
@@ -85,8 +98,8 @@ public class AuthFrame extends JFrame {
         });
         GridBagConstraints cLogInButton = new GridBagConstraints();
         cLogInButton.gridx = 0;
-        cLogInButton.gridy = 3;
-        cLogInButton.insets = new Insets(10, 20, 20, 20);
+        cLogInButton.gridy = hasError ? 4 : 3;
+        cLogInButton.insets = FIELD_INSETS;
         loginPanel.add(logInButton, cLogInButton);
     }
 
