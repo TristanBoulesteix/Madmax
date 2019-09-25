@@ -1,22 +1,25 @@
 package com.madmax.model;
 //import org.apache.spark.sql.Dataset;
-import java.sql.*;
-import java.util.ArrayList;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
 
 public class CAD {
 
-    public String getRows(String rSQL, String ResultSetName) {
+    String getRows(String rSQL, String ResultSetName) {
          String data = null;
         try {
             Connection con = DriverManager.getConnection(
                     "jdbc:mysql://localhost/madmax?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "root", "");
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery(rSQL);
-            rs.next();
-            data = rs.getString(1);
+            while (rs.next()) {
+                data = rs.getString(1);
+            }
             con.close();
         } catch (Exception e) {
-            System.out.println("ERROR" + e);
+            System.out.println("Error in CAD.java : " + e);
         }
         return data ;
     }
