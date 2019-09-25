@@ -14,8 +14,8 @@ public class Wkf_cpte implements Observer {
         return INSTANCE;
     }
 
-    public void showLoginFrame() {
-        AuthFrame frame = new AuthFrame();
+    public void showLoginFrame(boolean hasError) {
+        AuthFrame frame = new AuthFrame(hasError);
         frame.addObserver(this);
         frame.setVisible(true);
     }
@@ -40,7 +40,7 @@ public class Wkf_cpte implements Observer {
         String[] parameters = (String[]) args;
 
         if (!pcs_authentifier(parameters[0], parameters[1])) {
-            showLoginFrame();
+            showLoginFrame(true);
         } else {
             new FileManagerFrame().setVisible(true);
         }
