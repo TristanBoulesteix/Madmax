@@ -7,12 +7,10 @@ public class MapP {
         return INSTANCE;
     }
 
-    private MapP() { }
+    private MapP() {
+    }
 
-    public String selectIDbyLoginPassword(String login, String password){
-
-        CAD cadP = new CAD();
-
-        return cadP.getRows("SELECT ID_utilisateur FROM utilisateur WHERE Login =\""+login+"\" AND Password =\""+password+"\";", "user");
+    public String selectIDbyLoginPassword(String login, String password) {
+        return CAD.getInstance().getRows("SELECT ID_utilisateur FROM utilisateur WHERE Login =\"" + login + "\" AND Password =\"" + password + "\";", "user");
     }
 }

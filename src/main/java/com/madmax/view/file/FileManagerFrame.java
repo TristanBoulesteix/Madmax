@@ -9,7 +9,7 @@ public class FileManagerFrame extends JFrame {
     private static final Dimension BUTTON_DIMENSIONS = new Dimension(300, 25);
     private static final String SELECT_BUTTON_LABEL = "Sélectionnez un fichier crypté";
     private static final String SAVE_BUTTON_LABEL = "Enregistrer sous...";
-    private static final Insets FIELD_INSETS =  new Insets(20, 20, 20, 20);
+    private static final Insets FIELD_INSETS = new Insets(20, 20, 20, 20);
 
     private String encryptedFilePath;
     private String savePath;

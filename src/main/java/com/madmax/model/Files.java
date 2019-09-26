@@ -1,12 +1,12 @@
 package com.madmax.model;
 
 import java.io.*;
-import java.nio.file.StandardOpenOption;
 
 public class Files {
     private final static Files INSTANCE = new Files();
 
-    private Files() { }
+    private Files() {
+    }
 
     public static Files getInstance() {
         return INSTANCE;
@@ -34,7 +34,7 @@ public class Files {
 
     public void setData(String path, String data) {
         try {
-            BufferedWriter writer = new BufferedWriter(new FileWriter(new File(path),true));
+            BufferedWriter writer = new BufferedWriter(new FileWriter(new File(path), true));
             writer.write(data);
             writer.flush();
             writer.close();
