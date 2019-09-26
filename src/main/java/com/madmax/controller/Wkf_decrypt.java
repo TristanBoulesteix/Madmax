@@ -26,25 +26,23 @@ public class Wkf_decrypt {
         boolean done = false;
         while (!done) {
             String currentKey = generateKeyFromLastAttempt();
-            done = testKeyOnFile(source_path, destination_path, currentKey);
+            testKeyOnFile(source_path, destination_path, currentKey);
         }
         return true;
     } //Main method, looks for a suitable key to decipher the message
 
-    private boolean testKeyOnFile(String pathIn, String pathOut, String key) {
+    private void testKeyOnFile(String pathIn, String pathOut, String key) {
         String data = Files.getInstance().getData(pathIn);
         String out = Decrypt.getInstance().decrypt(data, key);
         String[] words = getFirstWords(out);
         int frenchNess = rateMyFrench(words);
         out = "\nkey N°" + nbTested + " " + key + " : " + frenchNess + "/5 : " + out;
         if (frenchNess > 2) {
-            System.out.println("A potential key has been found, check the output file");
+            System.out.print("\nA potential key has been found, check the output file");
             saveKey(pathOut, out);
             System.out.println(out);
-            return true;
         }
         nbTested++;
-        return false;
     } //tests a key and saves it if it looks like it works
 
     private String generateKeyFromLastAttempt() {
