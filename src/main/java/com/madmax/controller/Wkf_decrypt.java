@@ -7,10 +7,8 @@ import com.madmax.model.MapDic;
 
 public class Wkf_decrypt {
     private String lastTestKey;
-    private int nbTested;
-    private static String firstKey = "aaaaaaaa"; //The first key to be tested and incremented
-    private static String hint = "awqp"; //4 fixed letters that were given to us
-    //public static String placeHolder ="Ceci est un texte de test sans accents, c'est vrai que ca va pour l'instant ca marche, parceque bientot ca va partir en torche, et là ca va barder tmTc";
+    private static final String firstKey = "aaaaaaaa"; //The first key to be tested and incremented
+    private static final String hint = "awqp"; //4 fixed letters that were given to us
     private final static Wkf_decrypt INSTANCE = new Wkf_decrypt();
 
     public static Wkf_decrypt getInstance() {
@@ -18,7 +16,6 @@ public class Wkf_decrypt {
     }
 
     private Wkf_decrypt() {
-        this.nbTested = 0; //Number of keys tested
         this.lastTestKey = firstKey; //our first key tested, then we'll increment it to go forward                           /!\12 chars/!\
     }
 
@@ -44,7 +41,7 @@ public class Wkf_decrypt {
         }
         out = "\n" + key + " " + frenchNess + " : " + out;
         System.out.println(out);
-        nbTested++;
+
 
     } //tests a key and saves it if it looks like it works
 
