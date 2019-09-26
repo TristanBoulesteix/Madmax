@@ -26,7 +26,6 @@ public class AuthFrame extends JFrame {
 
     public AuthFrame(boolean hasError) {
         this.setSize(500, 375);
-        this.setUndecorated(false);
         this.setTitle("LOGIN");
         this.setResizable(false);
         this.setLocationRelativeTo(null);
