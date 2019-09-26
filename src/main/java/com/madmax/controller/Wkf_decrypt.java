@@ -55,17 +55,17 @@ public class Wkf_decrypt {
 
     private void incrementChar(int n) { //increments the unknown part of the key
         if ((lastTestKey.charAt(n)) == 'z') {
-            String out = "";
+            StringBuilder out = new StringBuilder();
             for (int i = 0; i < lastTestKey.length(); i++) {
                 if (i == n) {
-                    out = out + 'a';
+                    out.append('a');
                 } else {
-                    out = out + lastTestKey.charAt(i);
+                    out.append(lastTestKey.charAt(i));
 
                 }
 
             }
-            lastTestKey = out;
+            lastTestKey = out.toString();
             incrementChar(n - 1);
         } else {
 
@@ -86,10 +86,7 @@ public class Wkf_decrypt {
     } // increments individual chars in the key as needed (if a char is "z", the one before it goes up one char)
 
     private String[] getFirstWords(String text) { //Returns the 5 first words of a string in an array, after removing Uppercase chars and punctuation
-
-        String[] words = text.split(" ", 6);
-
-        return words;
+        return text.split(" ", 6);
     } //Saves the first words of a string
 
     private void saveKey(String path, String data) { //saves a key that seems good in a file
