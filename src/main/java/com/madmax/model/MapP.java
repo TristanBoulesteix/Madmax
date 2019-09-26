@@ -13,6 +13,6 @@ public class MapP {
 
         CAD cadP = new CAD();
 
-        return cadP.getRows("SELECT ID FROM utilisateur WHERE Login =\""+login+"\" AND Password =\""+password+"\";", "user");
+        return cadP.getRows("SELECT ID_utilisateur FROM utilisateur WHERE Login =\""+login+"\" AND Password =\""+password+"\";", "user");
     }
 }

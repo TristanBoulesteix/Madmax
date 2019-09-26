@@ -1,6 +1,7 @@
 package com.madmax.model;
 
 import java.io.*;
+import java.nio.file.StandardOpenOption;
 
 public class Files {
     private final static Files INSTANCE = new Files();
@@ -33,7 +34,7 @@ public class Files {
 
     public void setData(String path, String data) {
         try {
-            BufferedWriter writer = new BufferedWriter(new FileWriter(new File(path)));
+            BufferedWriter writer = new BufferedWriter(new FileWriter(new File(path),true));
             writer.write(data);
             writer.flush();
             writer.close();

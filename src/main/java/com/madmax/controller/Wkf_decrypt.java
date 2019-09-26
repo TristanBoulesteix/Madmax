@@ -8,9 +8,9 @@ import com.madmax.model.MapDic;
 public class Wkf_decrypt {
     private String lastTestKey;
     private int nbTested;
-
-    private String hint = "awqp";
-    public static String placeHolder ="Ceci est un texte de test sans accents, c'est vrai que ca va pour l'instant ca marche, parceque bientot ca va partir en torche, et là ca va barder tmTc";
+    private static String firstKey = "aaaaaaaa"; //The first key to be tested and incremented
+    private static String hint = "awqp"; //4 fixed letters that were given to us
+    //public static String placeHolder ="Ceci est un texte de test sans accents, c'est vrai que ca va pour l'instant ca marche, parceque bientot ca va partir en torche, et là ca va barder tmTc";
     private final static Wkf_decrypt INSTANCE = new Wkf_decrypt();
 
     public static Wkf_decrypt getInstance() {
@@ -19,15 +19,34 @@ public class Wkf_decrypt {
 
     private Wkf_decrypt() {
         this.nbTested =0; //Number of keys tested
-        this.lastTestKey = "aaaaaaaa"; //our first key tested, then we'll increment it to go forward                           /!\12 chars/!\
+        this.lastTestKey = firstKey; //our first key tested, then we'll increment it to go forward                           /!\12 chars/!\
     }
 
     public boolean pcs_decrypter(String source_path, String destination_path) {
-        String data = Decrypt.getInstance().decrypt(Files.getInstance().getData(source_path), "key");
-        Files.getInstance().setData(destination_path, data);
+        boolean done = false;
+       while(!done){
+          String currentKey = generateKeyFromLastAttempt();
+          testKeyOnFile(source_path,destination_path,currentKey);
+        }
         return true;
     } //Main method, looks for a suitable key to decipher the message
 
+    public void testKeyOnFile(String pathIn,String pathOut,String key){
+
+        String data = Files.getInstance().getData(pathIn);
+        String out = Decrypt.getInstance().decrypt(data,key);
+        String[] words = getFirstWords(out);
+        int frenchNess = rateMyFrench(words);
+        if (frenchNess>2){
+            saveKey(pathOut,data);
+        } else {
+
+        }
+        out = "\n"+key +" "+frenchNess+" : "+out;
+        System.out.println(out);
+        nbTested++;
+
+    } //tests a key and saves it if it looks like it works
 
     public String generateKeyFromLastAttempt() {
         int length = lastTestKey.length();
@@ -77,24 +96,34 @@ public class Wkf_decrypt {
         return words;
     } //Saves the first words of a string
 
-    public String testKey(String data,String key){
-        System.out.println(key);
-        String out = Decrypt.getInstance().decrypt(data,key);
-        String[] words = getFirstWords(out);
-        System.out.println(out); // test, à remplacer
-        return(out);
-    } //tests a key and saves it if it looks like it works
+    private void saveKey(String path, String data){ //saves a key that seems good in a file
+        Files.getInstance().setData(path,data);
+
+    }
 
 
-    //TO DO: une fonction qui compte les mots fr et les erreurs, et qui choisi de report la clé ou non.\\
+    public int rateMyFrench(String[] words) {
+        int length = words.length - 1;
+        int correct = 0;
+        int wrong = 0;
+        for (int i = 0; i < length; i++) {
+            System.out.println(words[i]);
+            if ( isWordFrench(words[i]) ) {
+                correct++;
+            } else {
+                wrong++;
+            }
+        }
+        return correct;
+    } //Counts the number of french words in an array
 
-    public boolean isWordFrench(String word){
+    private boolean isWordFrench(String word){ //Is a word french? this method returns the answer according to our "really reliable" dictionary
         String result = MapDic.getInstance().selectWord(word);
         if(result == null) {
             return false;
         }else{
             return true;
         }
-    } //Is a word french? this method returns the answer according to our "really reliable" dictionary
+    }
   
 }
