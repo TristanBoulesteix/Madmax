@@ -27,6 +27,11 @@ public class Wkf_decrypt {
             String currentKey = generateKeyFromLastAttempt();
             testKeyOnFile(source_path, destination_path, currentKey);
         }
+
+
+
+
+
         return true;
     } //Main method, looks for a suitable key to decipher the message
 
@@ -36,14 +41,12 @@ public class Wkf_decrypt {
         String out = Decrypt.getInstance().decrypt(data, key);
         String[] words = getFirstWords(out);
         int frenchNess = rateMyFrench(words);
-        if (frenchNess > 2) {
-            saveKey(pathOut, data);
-        } else {
-
-        }
-        out = "\n key N°"+nbTested +" "+ key  + " : "+ frenchNess + "/5 : " + out;
+        out = "\nkey N°"+nbTested +" "+ key  + " : "+ frenchNess + "/5 : " + out;
+        if (frenchNess > 3) {
+            System.out.println("A potential key has been found, check the output file");
+            saveKey(pathOut, out);
+        } else {}
         System.out.println(out);
-
         nbTested++;
     } //tests a key and saves it if it looks like it works
 
@@ -94,7 +97,6 @@ public class Wkf_decrypt {
 
     private void saveKey(String path, String data) { //saves a key that seems good in a file
         Files.getInstance().setData(path, data);
-
     }
 
 
