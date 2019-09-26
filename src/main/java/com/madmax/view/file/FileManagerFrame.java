@@ -17,7 +17,6 @@ public class FileManagerFrame extends JFrame {
 
     public FileManagerFrame() {
         this.setSize(500, 375);
-        this.setUndecorated(false);
         this.setTitle("DECRYPT");
         this.setResizable(false);
         this.setLocationRelativeTo(null);
