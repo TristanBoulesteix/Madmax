@@ -82,8 +82,12 @@ public class FileManagerFrame extends JFrame {
         // Button validate
         this.validate = new JButton("Valider");
         this.validate.addActionListener(e -> {
-            if (!Wkf_decrypt.getInstance().pcs_decrypter(this.encryptedFilePath, this.savePath))
-                JOptionPane.showMessageDialog(this, "Une erreur s'est produite !", "Erreur", JOptionPane.ERROR_MESSAGE);
+            new Thread(() -> {
+                if (!Wkf_decrypt.getInstance().pcs_decrypter(this.encryptedFilePath, this.savePath)) {
+                    JOptionPane.showMessageDialog(this, "Une erreur s'est produite !", "Erreur", JOptionPane.ERROR_MESSAGE);
+                }
+            }).start();
+            showExitPane();
         });
         this.validate.setPreferredSize(BUTTON_DIMENSIONS);
         this.validate.setEnabled(false);
@@ -99,6 +103,14 @@ public class FileManagerFrame extends JFrame {
             this.validate.setEnabled(true);
         } else {
             this.validate.setEnabled(false);
+        }
+    }
+
+    private void showExitPane() {
+        if (JOptionPane.showConfirmDialog(this, "Traitement en cours...", "Chargement", JOptionPane.OK_CANCEL_OPTION) == JOptionPane.CANCEL_OPTION) {
+            System.exit(0);
+        } else {
+            showExitPane();
         }
     }
 }
