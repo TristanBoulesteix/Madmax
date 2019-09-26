@@ -6,7 +6,7 @@ import com.madmax.model.Files;
 import com.madmax.model.MapDic;
 
 public class Wkf_decrypt {
-    int nbTested;
+    private int nbTested;
     private String lastTestKey;
     private static final String firstKey = "aaaaaaaa"; //The first key to be tested and incremented
     private static final String hint = "awqp"; //4 fixed letters that were given to us
