@@ -14,6 +14,5 @@ public class Main {
         }
 
         Wkf_cpte.getInstance().showLoginFrame(false);
-
     }
 }
