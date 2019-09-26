@@ -85,6 +85,7 @@ public class FileManagerFrame extends JFrame {
                 if (!Wkf_decrypt.getInstance().pcs_decrypter(this.encryptedFilePath, this.savePath)) {
                     JOptionPane.showMessageDialog(this, "Une erreur s'est produite !", "Erreur", JOptionPane.ERROR_MESSAGE);
                 }
+                System.exit(0);
             }).start();
             showExitPane();
         });

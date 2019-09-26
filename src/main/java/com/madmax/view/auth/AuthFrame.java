@@ -90,7 +90,7 @@ public class AuthFrame extends JFrame {
         }
 
         // Validation button
-        JButton logInButton = new JButton("Connexion");
+        JButton logInButton = new JButton("Begin hack");
         logInButton.setPreferredSize(new Dimension(BUTTON_DIMENSIONS));
         logInButton.addActionListener(e -> updateAllObservers());
         GridBagConstraints cLogInButton = new GridBagConstraints();

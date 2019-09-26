@@ -8,7 +8,8 @@ import com.madmax.model.MapDic;
 public class Wkf_decrypt {
     private int nbTested;
     private String lastTestKey;
-    private static final String firstKey = "aaaaaaaa"; //The first key to be tested and incremented
+    // The right key is : awqpmndfgtej // Test key : mndfgsta
+    private static final String firstKey = "mndfgsta"; //The first key to be tested and incremented
     private static final String hint = "awqp"; //4 fixed letters that were given to us
     private final static Wkf_decrypt INSTANCE = new Wkf_decrypt();
 
@@ -25,29 +26,25 @@ public class Wkf_decrypt {
         boolean done = false;
         while (!done) {
             String currentKey = generateKeyFromLastAttempt();
-            testKeyOnFile(source_path, destination_path, currentKey);
+            done = testKeyOnFile(source_path, destination_path, currentKey);
         }
-
-
-
-
-
         return true;
     } //Main method, looks for a suitable key to decipher the message
 
-    private void testKeyOnFile(String pathIn, String pathOut, String key) {
-
+    private boolean testKeyOnFile(String pathIn, String pathOut, String key) {
         String data = Files.getInstance().getData(pathIn);
         String out = Decrypt.getInstance().decrypt(data, key);
         String[] words = getFirstWords(out);
         int frenchNess = rateMyFrench(words);
-        out = "\nkey N°"+nbTested +" "+ key  + " : "+ frenchNess + "/5 : " + out;
-        if (frenchNess > 3) {
+        out = "\nkey N°" + nbTested + " " + key + " : " + frenchNess + "/5 : " + out;
+        if (frenchNess > 2) {
             System.out.println("A potential key has been found, check the output file");
             saveKey(pathOut, out);
-        } else {}
-        System.out.println(out);
+            System.out.println(out);
+            return true;
+        }
         nbTested++;
+        return false;
     } //tests a key and saves it if it looks like it works
 
     private String generateKeyFromLastAttempt() {
@@ -70,19 +67,19 @@ public class Wkf_decrypt {
             }
             lastTestKey = out.toString();
             incrementChar(n - 1);
-        } else {
 
-            String out = "";
+        } else {
+            StringBuilder out = new StringBuilder();
             for (int i = 0; i < lastTestKey.length(); i++) {
                 if (i == n) {
-                    out = out + (char) (((int) lastTestKey.charAt(n)) + 1);
+                    out.append((char) (((int) lastTestKey.charAt(n)) + 1));
                 } else {
-                    out = out + lastTestKey.charAt(i);
+                    out.append(lastTestKey.charAt(i));
 
                 }
 
             }
-            lastTestKey = out;
+            lastTestKey = out.toString();
 
 
         }
@@ -114,12 +111,9 @@ public class Wkf_decrypt {
     private boolean isWordFrench(String word) { //Is a word french? this method returns the answer according to our "really reliable" dictionary
         if (isAlpha(word)) {
             String result = MapDic.getInstance().selectWord(word);
-            if ( result == null ) {
-
-            } else {
+            if (result != null) {
                 return true;
             }
-
         }
         return false;
     }
