@@ -5,7 +5,7 @@ import com.madmax.controller.Wkf_decrypt;
 import javax.swing.*;
 import java.awt.*;
 
-public class FileManagerFrame extends JFrame {
+public class FrmDecrypt extends JFrame {
     private static final Dimension BUTTON_DIMENSIONS = new Dimension(300, 25);
     private static final String SELECT_BUTTON_LABEL = "Sélectionnez un fichier crypté";
     private static final String SAVE_BUTTON_LABEL = "Enregistrer sous...";
@@ -15,7 +15,7 @@ public class FileManagerFrame extends JFrame {
     private String savePath;
     private JButton validate;
 
-    public FileManagerFrame() {
+    public FrmDecrypt() {
         this.setSize(500, 375);
         this.setTitle("DECRYPT");
         this.setResizable(false);

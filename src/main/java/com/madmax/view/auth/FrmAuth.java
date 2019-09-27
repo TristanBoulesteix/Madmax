@@ -11,7 +11,7 @@ import java.awt.event.KeyListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AuthFrame extends JFrame {
+public class FrmAuth extends JFrame {
     private static final Dimension FIELD_DIMENSIONS = new Dimension(200, 25);
     private static final Dimension BUTTON_DIMENSIONS = new Dimension(100, 25);
     private static final Insets FIELD_INSETS = new Insets(10, 20, 20, 20);
@@ -24,7 +24,7 @@ public class AuthFrame extends JFrame {
         this.observers.add(observer);
     }
 
-    public AuthFrame(boolean hasError) {
+    public FrmAuth(boolean hasError) {
         this.setSize(500, 375);
         this.setTitle("LOGIN");
         this.setResizable(false);
