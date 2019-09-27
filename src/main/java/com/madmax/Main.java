@@ -1,6 +1,6 @@
 package com.madmax;
 
-import com.madmax.controller.Wkf_cpte;
+import com.madmax.controller.WkfCpte;
 
 import javax.swing.*;
 
@@ -14,7 +14,7 @@ public class Main {
                 e.printStackTrace();
             }
 
-            Wkf_cpte.getInstance().showLoginFrame(false);
+            WkfCpte.getInstance().showLoginFrame(false);
         });
     }
 }

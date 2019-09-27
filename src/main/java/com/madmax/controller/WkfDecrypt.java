@@ -5,19 +5,19 @@ import com.madmax.model.Decrypt;
 import com.madmax.model.Files;
 import com.madmax.model.MapDic;
 
-public class Wkf_decrypt {
+public class WkfDecrypt {
     private int nbTested;
     private String lastTestKey;
     // The right key is : awqpmndfgtej // Test key : mndfgsta
     private static final String firstKey = "mndfgsta"; //The first key to be tested and incremented
     private static final String hint = "awqp"; //4 fixed letters that were given to us
-    private final static Wkf_decrypt INSTANCE = new Wkf_decrypt();
+    private final static WkfDecrypt INSTANCE = new WkfDecrypt();
 
-    public static Wkf_decrypt getInstance() {
+    public static WkfDecrypt getInstance() {
         return INSTANCE;
     }
 
-    private Wkf_decrypt() {
+    private WkfDecrypt() {
         this.nbTested = 0;
         this.lastTestKey = firstKey; //our first key tested, then we'll increment it to go forward                           /!\12 chars/!\
     }
@@ -59,7 +59,6 @@ public class Wkf_decrypt {
                     out.append('a');
                 } else {
                     out.append(lastTestKey.charAt(i));
-
                 }
 
             }

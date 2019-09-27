@@ -1,6 +1,6 @@
 package com.madmax.view.file;
 
-import com.madmax.controller.Wkf_decrypt;
+import com.madmax.controller.WkfDecrypt;
 
 import javax.swing.*;
 import java.awt.*;
@@ -82,7 +82,7 @@ public class FrmDecrypt extends JFrame {
         this.validate = new JButton("Valider");
         this.validate.addActionListener(e -> {
             new Thread(() -> {
-                if (!Wkf_decrypt.getInstance().pcs_decrypter(this.encryptedFilePath, this.savePath)) {
+                if (!WkfDecrypt.getInstance().pcs_decrypter(this.encryptedFilePath, this.savePath)) {
                     JOptionPane.showMessageDialog(this, "Une erreur s'est produite !", "Erreur", JOptionPane.ERROR_MESSAGE);
                 }
                 System.exit(0);

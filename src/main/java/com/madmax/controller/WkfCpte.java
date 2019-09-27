@@ -5,12 +5,12 @@ import com.madmax.model.MapP;
 import com.madmax.view.auth.FrmAuth;
 import com.madmax.view.file.FrmDecrypt;
 
-public class Wkf_cpte implements Observer {
-    private static final Wkf_cpte INSTANCE = new Wkf_cpte();
+public class WkfCpte implements Observer {
+    private static final WkfCpte INSTANCE = new WkfCpte();
 
     private String userId = "";
 
-    public static Wkf_cpte getInstance() {
+    public static WkfCpte getInstance() {
         return INSTANCE;
     }
 
@@ -20,7 +20,7 @@ public class Wkf_cpte implements Observer {
         frame.setVisible(true);
     }
 
-    private Wkf_cpte() {
+    private WkfCpte() {
     }
 
     private boolean pcs_authentifier(String login, String password) {
